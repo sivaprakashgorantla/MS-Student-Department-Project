@@ -1,0 +1,53 @@
+<p>add-student works!</p>
+
+<div class="row">  
+    <div class="col-sm-4"></div>  
+    <div class="col-sm-4" >  
+      <div [hidden]="submitted" style="width: 400px;">  
+        <form [formGroup]="studentsaveform" #savestudent (ngSubmit)="saveStudent()">  
+            <div class="form-group">  
+                <label for="name" class="form-label">Student First Name</label>  
+                <input type="text" class="form-control"  formControlName="firstName" data-toggle="tooltip"   
+                   data-placement="right" title="Enter Student First Name" >  
+                <div class="alert alert-danger" *ngIf = "(student.firstName) && (student.firstName)"   
+                  style="margin-top: 5px;">  
+                    <span *ngIf="student.firstName">Student Name is Required</span>  
+                      <span *ngIf = "student.firstName">   
+                          MinLength Error   
+                      </span>                     
+                  </div>  
+            </div>  
+            <div class="form-group">  
+              <label for="name">Student Last Name</label>  
+              <input type="text" class="form-control"  formControlName="lastName" data-toggle="tooltip"   
+                 data-placement="right" title="Enter Student Last Name" >  
+              <div class="alert alert-danger" *ngIf = "(student.lastName) && (student.lastName)"   
+                style="margin-top: 5px;">  
+                  <span *ngIf="student.lastName">Student Name is Required</span>  
+                    <span *ngIf = "student.lastName">   
+                        MinLength Error   
+                    </span>                     
+                </div>  
+          </div>  
+    
+            <div class="form-group">  
+                <label for="name">Student Email</label>  
+                <input type="text" class="form-control" formControlName="email"   
+                  data-toggle="tooltip" data-placement="right" title="Enter Student Email">  
+                  <div class="alert alert-danger" *ngIf = "(student.email) && (student.email)"   
+                  style="margin-top: 5px;">  
+                    <span *ngIf="student.email">Student Email is Required</span>  
+                      <span *ngIf = "student.email">   
+                          Invalid Email Format   
+                      </span>                     
+                  </div>  
+            </div>  
+      
+            <button type="submit" class="btn btn-success">Submit</button>  
+        </form>  
+    </div>  
+    </div>  
+    <div class="col-sm-4"></div>  
+  </div>  
+  
+  
