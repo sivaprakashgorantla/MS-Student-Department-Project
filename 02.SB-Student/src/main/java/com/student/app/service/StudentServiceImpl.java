@@ -50,7 +50,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student getStudentById(Long id) {
 		// TODO Auto-generated method stub
-		return studentRepository.getById(id);
+		return studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
 	}
 
 	@Override
@@ -58,5 +58,29 @@ public class StudentServiceImpl implements StudentService {
 		// TODO Auto-generated method stub
 		System.out.println("StudentSErvice getAllStudents");
 		return studentRepository.findAll();
+	}
+
+	@Override
+	public Student updateStudent(Long id, Student student) {
+		// TODO Auto-generated method stub
+		
+		Student oldStudent = studentRepository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException(id));
+		if(student !=null ) {
+			oldStudent.setFirstName(student.getFirstName());
+			oldStudent.setLastName(student.getLastName());
+			oldStudent.setEmail(student.getEmail());
+		}
+		
+		return studentRepository.save(oldStudent);
+	}
+
+	@Override
+	public void deleteStudentById(Long id) {
+		// TODO Auto-generated method stub
+		 if (!studentRepository.existsById(id)) {
+	            throw new StudentNotFoundException(id);
+	        }
+	        studentRepository.deleteById(id);
 	}
 }

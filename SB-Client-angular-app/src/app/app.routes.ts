@@ -3,7 +3,7 @@ import { StudentListComponent } from './components/student-list/student-list.com
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { UpdateStudentComponent } from './components/update-student/update-student.component';
 import { DepartmentListComponent } from './components/department/department-list/department-list.component';
-import { AddDepartmentComponent } from './add-department/add-department.component';
+import { AddDepartmentComponent } from './components/department/add-department/add-department.component';
 
 
 export const routes: Routes = [
@@ -12,6 +12,6 @@ export const routes: Routes = [
   { path: 'add-student', component: AddStudentComponent },
   { path: 'update-student/:id',component:UpdateStudentComponent},
   { path: 'department-list', component: DepartmentListComponent },
-  { path: 'save-departmen', component: AddDepartmentComponent },
+  { path: 'save-department', component: AddDepartmentComponent },
   { path: '', redirectTo: '/students', pathMatch: 'full' }
 ];

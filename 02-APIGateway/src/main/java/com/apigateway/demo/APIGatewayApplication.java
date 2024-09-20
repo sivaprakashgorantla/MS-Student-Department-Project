@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-//@CrossOrigin(methods = {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin()
 public class APIGatewayApplication {
 
 	public static void main(String[] args) {
