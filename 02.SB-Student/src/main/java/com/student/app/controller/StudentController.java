@@ -31,14 +31,14 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
-	@PostMapping("/save")
+	@PostMapping("")
 	public Student saveStudent(@RequestBody Student student) {
 		return studentService.saveStudent(student);
 	}
 	
 	
 	// This method will be triggered for a GET request to "/api/students"
-    @GetMapping("/")
+    @GetMapping("")
     public List<Student> getAllStudents() {
     	System.out.println("StudentController getAllStudents ");
 		System.out.println("StudentController Students Data  "+studentService.getAllStudents());
@@ -46,7 +46,7 @@ public class StudentController {
     }
 	
 
-	@GetMapping("{id}")
+	@GetMapping("/{id}")
 	public Student getStudent(@PathVariable Long id){
 		return studentService.getStudentById(id);
 	}
@@ -70,13 +70,13 @@ public class StudentController {
 		return CompletableFuture.supplyAsync(()->"Fallback method '@CircuitBreaker ' Service is down. Please try after some time.");
 	}
 	
-	@PutMapping("{id}")
+	@PutMapping("/{id}")
 	public Student updateStudent(@PathVariable Long id , @RequestBody Student student){
 				return studentService.updateStudent(id , student);
 	}
 	
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> updateStudent(@PathVariable Long id ){
 		studentService.deleteStudentById(id);
         return ResponseEntity.noContent().build();

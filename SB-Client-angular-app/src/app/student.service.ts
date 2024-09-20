@@ -15,12 +15,12 @@ export class StudentService {
 
   getStudentList(): Observable<any> {
     // return this.http.get(`${this.baseUrl}` + 'allStudents');
-    return this.http.get(`${this.baseUrl}/`);
+    return this.http.get(`${this.baseUrl}`);
   }
 
   createStudent(student: object): Observable<object> {
     // return this.http.post(`${this.baseUrl}` + 'save', student);
-    return this.http.post(`${this.baseUrl}/save`, student);
+    return this.http.post(`${this.baseUrl}`, student);
 
   }
 
