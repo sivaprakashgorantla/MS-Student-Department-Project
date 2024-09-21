@@ -24,8 +24,6 @@ export class StudentService {
 
   }
 
-
-
   getStudent(id: number): Observable<any> {
     // return this.http.get(`${this.baseUrl}getStudent/${id}`);
     return this.http.get(`${this.baseUrl}/${id}`);

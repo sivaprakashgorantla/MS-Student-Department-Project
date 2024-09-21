@@ -1,13 +1,9 @@
 package com.student.app.exception;
 
 public class StudentNotFoundException extends RuntimeException {
-	private
+	private	final Long studentId;
 
-	final Long studentId;
-
-	public
-
-	StudentNotFoundException(Long studentId) {
+	public 	StudentNotFoundException(Long studentId) {
 		super("Student with ID " + studentId + " not found");
 		this.studentId = studentId;
 	}
@@ -15,4 +11,6 @@ public class StudentNotFoundException extends RuntimeException {
 	public Long getStudentId() {
 		return studentId;
 	}
+
+	
 }

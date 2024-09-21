@@ -53,17 +53,17 @@ this.loadTable();
     // this.students = this.studentService.getStudents();
   }
 
-  updateStudent(id: number): void {
-    // this.studentService.updateStudent(id,{ firstName: this.}).subscribe({
-    //   next:(response)=>{
+  // updateStudent(id: number): void {
+  //   // this.studentService.updateStudent(id,{ firstName: this.}).subscribe({
+  //   //   next:(response)=>{
 
-    //   },
-    //   error:(error)=>{
+  //   //   },
+  //   //   error:(error)=>{
 
-    //   }
+  //   //   }
 
-    // });
-    // this.students = this.studentService.getStudents();
-  }
+  //   // });
+  //   // this.students = this.studentService.getStudents();
+  // }
 
 }

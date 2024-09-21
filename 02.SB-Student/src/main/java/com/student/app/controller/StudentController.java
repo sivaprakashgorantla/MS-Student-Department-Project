@@ -23,6 +23,10 @@ import com.student.app.entity.Student;
 import com.student.app.exception.StudentNotFoundException;
 import com.student.app.service.StudentService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
+
 @RestController
 @RequestMapping("/api/student")
 public class StudentController {
@@ -51,16 +55,12 @@ public class StudentController {
 		return studentService.getStudentById(id);
 	}
 	
-	/*@GetMapping("/{id}")
+	@GetMapping("/{id}/withDept")
+	 @CircuitBreaker(name="studentservice", fallbackMethod="fallbackMethod")
+	 @Retry(name="studentservice")
+	 @TimeLimiter(name="studentservice")
+	 @ResponseStatus(HttpStatus.ACCEPTED)
 	
-	 * @CircuitBreaker(name="studentservice", fallbackMethod="fallbackMethod")
-	 * 
-	 * @Retry(name="studentservice")
-	 * 
-	 * @TimeLimiter(name="studentservice")
-	 * 
-	 * @ResponseStatus(HttpStatus.ACCEPTED)
-	 */
 	public CompletableFuture<String> getStudentWithDepartment(@PathVariable Long id) {
 		return CompletableFuture.supplyAsync(()->studentService.getStudentWithDepartment(id));
 	}

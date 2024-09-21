@@ -1,43 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Department } from './department';
+import { Observable } from 'rxjs/internal/Observable';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DepartmentService {
   
-  private baseUrl = 'http://localhost:8080/api/';  
+  private baseUrl = 'http://localhost:9988/api/department/';  
   
-  private deparments:Department[]=[
-    {departmentId:2001,departmentName:'Production',departmentAddress:'Product',departmentCode:'PRODC01'},
-    {departmentId:2002,departmentName:'Marketing',departmentAddress:'Super Market',departmentCode:'SMC01'},
-    {departmentId:2003,departmentName:'Develpment',departmentAddress:'Vivil',departmentCode:'DCC01'},
-    {departmentId:2004,departmentName:'Sales',departmentAddress:'Mobile, Telivision',departmentCode:'SAC01'},
-    {departmentId:2005,departmentName:'SOFTWARE',departmentAddress:'JAVA, .NET',departmentCode:'IT01'},
-    ]
-  constructor() { }
-
-  getStudents(): Department[]{
-    return this.deparments;
+  
+  constructor(private http: HttpClient) { }
+  
+  getDepartmentList(): Observable<any> {
+  
+    return this.http.get(`${this.baseUrl}`);
   }
 
-  getDepartment(id:number):Department | undefined{
-    return this.deparments.find(d=> d.departmentId === id);
+  getDepartment(id:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}${id}`);
   }
 
-  addDepartment(department: Department):void {
-    this.deparments.push(department);
+  createDepartment(department: Department):Observable<any> {
+   return this.http.post(`${this.baseUrl}`, department);
   }
 
-  updateDepartment(updateDepartment:Department):void{
-    const index = this.deparments.findIndex(d => d.departmentId === updateDepartment.departmentId);
-    if (index !== -1) {
-      this.deparments[index] = updateDepartment;
-    }
+  
+  updateDepartment(id: number, department: Department): Observable<Object>{
+    // return this.http.put(`${this.baseUrl}edit/${id}`, student);
+    return this.http.put(`${this.baseUrl}${id}`, department);
   }
 
-  deleteDepartment(id: number): void {
-    this.deparments = this.deparments.filter(d => d.departmentId !== id);
+  deleteDepartment(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}${id}`);
   }
 }
 
