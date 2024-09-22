@@ -5,21 +5,28 @@
     <table class="table table-striped">
         <thead>
             <tr>
-            <th> Student id</th>
-            <th> First Name</th>
-            <th> Last Name</th>
-            <th> Email</th>
-            <th> Actions</th>
-        </tr>
-    </thead>
+                <th> Student id</th>
+                <th> First Name</th>
+                <th> Last Name</th>
+                <th> Email</th>
+                <th> Actions</th>
+            </tr>
+        </thead>
         <tr *ngFor="let student of students">
             <td>{{ student.studentId }}</td>
             <td>{{ student.firstName }}</td>
             <td>{{ student.lastName }}</td>
             <td>{{ student.email}}</td>
             <td>
-                <a ngClass="btn btn-primary" [routerLink]="['/','update-student',student.studentId]" style="margin-right: 5px;">Edit</a>
+                <a ngClass="btn btn-primary" [routerLink]="['/','update-student',student.studentId]"
+                    style="margin-right: 5px;">Edit</a>
                 <a class="btn btn-danger" (click)="deleteStudent(student.studentId!)">Delete</a>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align: right;"><a ngClass="btn btn-primary" routerLink="/add-student">Add</a>
             </td>
         </tr>
 

@@ -1,4 +1,6 @@
-<div style="background-color: rgb(89, 97, 97);"> <h4 style="color: rgb(253, 252, 252);">department-list works! </h4></div>
+<div style="background-color: rgb(89, 97, 97); text-align: center;">
+     <h4 style="color: rgb(253, 252, 252);">Department Service</h4>
+
 <ul>
     <table class="table table-striped">
         <thead>
@@ -16,11 +18,17 @@
             <td>{{ department.departmentAddress }}</td>
             <td>{{ department.departmentCode}}</td>
             <td>
+
                 <a ngClass="btn btn-primary" [routerLink]="['/','update-department',department.departmentId]" style="margin-right: 5px;">Edit</a>
                 <a class="btn btn-danger" (click)="deleteDepartment(department.departmentId!)">Delete</a>
             </td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align: right;"><a ngClass="btn btn-primary" routerLink="/save-department">Add</a></td>
         </tr>
 
     </table>
 
 </ul>
+
+</div>

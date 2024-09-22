@@ -23,6 +23,7 @@ import com.department.app.entity.Department;
 import com.department.app.exception.DepartmentNotFoundException;
 import com.department.app.service.DepartmentService;
 
+
 @RestController
 @RequestMapping("/api/department/")
 public class DepartmentController {
@@ -45,6 +46,11 @@ public class DepartmentController {
 		return departmentService.getAllDepartments();
 	}
 
+	@GetMapping("/{id}")
+	public Department getDepartmentById(@PathVariable Long id){
+		return departmentService.getDepartmentById(id);
+	}
+	
 	@PutMapping("/{id}")
 	public Department updateDepartment(@PathVariable Long id, @RequestBody Department department) {
 		return departmentService.updateDepartment(id, department);

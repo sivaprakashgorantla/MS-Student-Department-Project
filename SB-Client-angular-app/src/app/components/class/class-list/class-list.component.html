@@ -1,0 +1,29 @@
+<p>class-list works!</p>
+<div style="background-color: rgb(89, 97, 97); text-align: center;"> <h4 style="color: rgb(253, 252, 252);">Class Service</h4></div>
+<ul>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th> Class Name</th>
+            <th> Class Address</th>
+            <th> Class Code</th>
+            <th> Actions</th>
+        </tr>
+    </thead>
+        <tr *ngFor="let class of classess">
+            <td>{{ class.classId }}</td>
+            <td>{{  class.className }}</td>
+            <td>{{  class.classCode  }}</td>
+            <td>
+               
+                <a ngClass="btn btn-primary" [routerLink]="['/','update-class',class.classId]" style="margin-right: 5px;">Edit</a>
+                <a class="btn btn-danger" (click)="deleteClass(class.classId!)">Delete</a>
+            </td>
+        </tr>
+        <tr>
+            <td><td colspan="5" style="text-align: right;"> <a ngClass="btn btn-primary" routerLink="/save-class">Add</a></td>
+        </tr>
+
+    </table>
+
+</ul>

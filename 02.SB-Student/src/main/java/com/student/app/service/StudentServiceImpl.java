@@ -57,7 +57,7 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> getAllStudents() {
 		// TODO Auto-generated method stub
 		System.out.println("StudentSErvice getAllStudents");
-		return studentRepository.findAll();
+		return studentRepository.findAllByOrderByStudentIdAsc();
 	}
 
 	@Override

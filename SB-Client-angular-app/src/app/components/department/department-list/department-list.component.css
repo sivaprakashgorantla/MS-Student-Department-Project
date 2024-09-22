@@ -1,0 +1,16 @@
+tr:nth-child(odd) {
+    background-color: rgb(230, 240, 247);
+}
+
+tr:nth-child(even) {
+    background-color: rgb(247, 226, 229);
+}
+
+th {
+    background-color: rgba(240, 248, 248, 0.507);
+} 
+
+.table-striped thead {
+    background-color: rgb(200, 200, 255); /* Example color */
+    color: white; /* Optional: Change the text color */
+}

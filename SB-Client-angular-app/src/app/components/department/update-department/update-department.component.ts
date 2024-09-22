@@ -27,7 +27,7 @@ export class UpdateDepartmentComponent {
      .subscribe({
        next: (response: Department | undefined) => {
          if (response != undefined) {
-           console.log(response);
+           console.log('Department Response :'+response);
            this.department = response;
            this.departmentSaveform.controls['departmentName'].setValue(response.departmentName);
            this.departmentSaveform.controls['departmentAddress'].setValue(response.departmentAddress);
