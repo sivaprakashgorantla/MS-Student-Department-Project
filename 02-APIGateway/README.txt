@@ -1,0 +1,1 @@
+http://localhost:9988/api/apigateway/actuator/health
