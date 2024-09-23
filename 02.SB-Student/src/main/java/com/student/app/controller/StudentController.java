@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,6 +36,9 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
+	@Value("${app.title}")
+	private String title;
+	
 	@PostMapping("")
 	public Student saveStudent(@RequestBody Student student) {
 		return studentService.saveStudent(student);
@@ -48,12 +52,19 @@ public class StudentController {
 		System.out.println("StudentController Students Data  "+studentService.getAllStudents());
     	return studentService.getAllStudents();
     }
-	
+    
 
 	@GetMapping("/{id}")
 	public Student getStudent(@PathVariable Long id){
 		return studentService.getStudentById(id);
 	}
+	
+	
+    @GetMapping("/config")
+    public ResponseEntity<String> showProductMsg() {
+        return new ResponseEntity<String>("Value of title from Config Server: "+title, HttpStatus.OK);
+    }
+
 	
 	@GetMapping("/{id}/withDept")
 	 @CircuitBreaker(name="studentservice", fallbackMethod="fallbackMethod")

@@ -9,10 +9,10 @@
 		<version>3.3.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.department</groupId>
-	<artifactId>02.SB-Department</artifactId>
+	<groupId>com.class</groupId>
+	<artifactId>02.SB-Class</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>02.SB-Department</name>
+	<name>02.SB-Class</name>
 	<description>Demo project for Spring Boot</description>
 	<url />
 	<licenses>
@@ -80,6 +80,10 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 	</dependencies>
 

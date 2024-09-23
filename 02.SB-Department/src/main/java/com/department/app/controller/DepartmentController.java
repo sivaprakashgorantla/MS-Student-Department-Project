@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,10 +34,13 @@ public class DepartmentController {
 	@Autowired
 	private DepartmentService departmentService;
 
-	@PostMapping("")
-	public Department saveDepartment(@RequestBody Department department) {
-		return departmentService.saveDepartment(department);
-	}
+	@Value("${app.title}")
+	private String title;
+	
+    @GetMapping("/config")
+    public ResponseEntity<String> showProductMsg() {
+        return new ResponseEntity<String>("Value of title from Config Server: "+title, HttpStatus.OK);
+    }
 
 	// This method will be triggered for a GET request to
 	@GetMapping("")
@@ -51,6 +55,13 @@ public class DepartmentController {
 		return departmentService.getDepartmentById(id);
 	}
 	
+	
+	@PostMapping("")
+	public Department saveDepartment(@RequestBody Department department) {
+		return departmentService.saveDepartment(department);
+	}
+
+
 	@PutMapping("/{id}")
 	public Department updateDepartment(@PathVariable Long id, @RequestBody Department department) {
 		return departmentService.updateDepartment(id, department);

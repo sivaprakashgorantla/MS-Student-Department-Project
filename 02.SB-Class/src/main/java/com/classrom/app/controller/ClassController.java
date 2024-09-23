@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,10 +33,13 @@ public class ClassController {
 	@Autowired
 	private ClassService classRepository;
 
-	@PostMapping("")
-	public ClassRoom saveDepartment(@RequestBody ClassRoom classRoom) {
-		return classRepository.saveClass(classRoom);
-	}
+	@Value("${app.title}")
+	private String title;
+	
+    @GetMapping("/config")
+    public ResponseEntity<String> showProductMsg() {
+        return new ResponseEntity<String>("Value of title from Config Server: "+title, HttpStatus.OK);
+    }
 
 	// This method will be triggered for a GET request to
 	@GetMapping("")
@@ -43,6 +47,16 @@ public class ClassController {
 		System.out.println("ClassController getAllClasses ");
 		System.out.println("ClassController getAllClasses Data  " + classRepository.getAllClasses());
 		return classRepository.getAllClasses();
+	}
+
+	@GetMapping("/{id}")
+	public ClassRoom getClassById(@PathVariable Long id){
+		return classRepository.getClassById(id);
+	}
+	
+	@PostMapping("")
+	public ClassRoom saveDepartment(@RequestBody ClassRoom classRoom) {
+		return classRepository.saveClass(classRoom);
 	}
 
 	@PutMapping("/{id}")
