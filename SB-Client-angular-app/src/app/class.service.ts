@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ClassService {
 
-  private baseUrl = 'http://localhost:9988/api/class/';  
+  private baseUrl = 'http://localhost:9988/api/class';  
   
   
   constructor(private http: HttpClient) { }
@@ -19,7 +19,7 @@ export class ClassService {
   }
 
   getClass(id:number):Observable<any>{
-    return this.http.get(`${this.baseUrl}${id}`);
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
   createClass(department: Class):Observable<any> {
@@ -29,9 +29,9 @@ export class ClassService {
   
   updateClass(id: number, department: Class): Observable<Object>{
     // return this.http.put(`${this.baseUrl}edit/${id}`, student);
-    return this.http.put(`${this.baseUrl}${id}`, department);
+    return this.http.put(`${this.baseUrl}/${id}`, department);
   }
 
   deleteClass(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }}

@@ -6,6 +6,7 @@ import { DepartmentListComponent } from './components/department/department-list
 import { AddDepartmentComponent } from './components/department/add-department/add-department.component';
 import { UpdateDepartmentComponent } from './components/department/update-department/update-department.component';
 import { ClassListComponent } from './components/class/class-list/class-list.component';
+import { UpdateClassComponent } from './components/class/update-class/update-class.component';
 
 
 export const routes: Routes = [
@@ -17,6 +18,6 @@ export const routes: Routes = [
   { path: 'save-department', component: AddDepartmentComponent },
   { path: 'update-department/:id', component: UpdateDepartmentComponent },
   { path: 'class-list', component: ClassListComponent },
-  { path: 'update-class/:id', component: UpdateDepartmentComponent },
+  { path: 'update-class/:id', component: UpdateClassComponent },
   { path: '', redirectTo: '/students', pathMatch: 'full' }
 ];

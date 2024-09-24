@@ -27,7 +27,7 @@ import com.department.app.service.DepartmentService;
 
 
 @RestController
-@RequestMapping("/api/department/")
+@RequestMapping("/api/department")
 @RefreshScope
 public class DepartmentController {
 

@@ -26,7 +26,7 @@ import com.classrom.app.exception.ClassRoomNotFoundException;
 import com.classrom.app.service.ClassService;
 
 @RestController
-@RequestMapping("/api/class/")
+@RequestMapping("/api/class")
 @RefreshScope
 public class ClassController {
 

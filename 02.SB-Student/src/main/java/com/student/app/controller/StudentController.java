@@ -32,7 +32,6 @@ import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 @RestController
 @RequestMapping("/api/student")
 @RefreshScope
-
 public class StudentController {
 	Logger logger = LoggerFactory.getLogger(StudentController.class);
 
@@ -61,6 +60,11 @@ public class StudentController {
 	public Student getStudent(@PathVariable Long id){
 		return studentService.getStudentById(id);
 	}
+	
+	@GetMapping("/actuator")
+    public ResponseEntity<String> getActuatorInfo() {
+        return ResponseEntity.ok("Actuator Info");
+    }
 	
 	
     @GetMapping("/config")
