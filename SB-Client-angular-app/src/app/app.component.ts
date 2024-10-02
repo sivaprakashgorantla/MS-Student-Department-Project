@@ -1,6 +1,6 @@
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
-import { AddStudentComponent } from './components/add-student/add-student.component';
-import { StudentListComponent } from './components/student-list/student-list.component';
+import { AddStudentComponent } from './components/student/add-student/add-student.component';
+import { StudentListComponent } from './components/student/student-list/student-list.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from "./footer/footer.component";
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';

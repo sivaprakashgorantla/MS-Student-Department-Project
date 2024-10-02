@@ -1,38 +1,42 @@
-package com.classrom.app.loader;
+package com.course.app.loader;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.classrom.app.entity.ClassRoom;
-import com.classrom.app.repository.ClassRepository;
+import com.course.app.controller.CourseController;
+import com.course.app.entity.Course;
+import com.course.app.repository.CourseRepository;
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
-	private final Logger logger = LoggerFactory.getLogger(DataLoader.class);
+
+	private static final Logger LOGGER = LogManager.getLogger(DataLoader.class);
+
+
 	
 	@Autowired
-	private ClassRepository classRepository ;
+	private CourseRepository courseRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-	
-		 List<ClassRoom> classRoms = List.of(
-				 new ClassRoom(3001L,"X","SSC"),
-				 new ClassRoom(3002L,"Intermediate","PUC"),
-				 new ClassRoom(3003L,"ENGINEERING","GRADUATION"),
-				 new ClassRoom(3004L,"MASTERS","POSTGRADUATION"),
-				 new ClassRoom(3005L,"MEDICINE","MBBS"));
+		 List<Course> courses = List.of(
+				 new Course(3001L,"C","SSC",65),
+				 new Course(3002L,"C++","PUC",70),
+				 new Course(3003L,"JAVA","GRADUATION",120),
+				 new Course(3004L,"GOOGLE CLOUD PLATFORM","gcp",40),
+				 new Course(3005L,"DEVops","DEVops",50));
 		 
-		 //classRepository.saveAll(classRoms);
+		 //courseRepository.saveAll(courses);
 				 
-		System.out.println("========================================= ClassRoom =DataLoader");
+		 LOGGER.info("courses =DataLoader");
 		
 	}
 

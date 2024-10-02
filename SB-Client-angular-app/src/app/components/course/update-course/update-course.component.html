@@ -1,0 +1,34 @@
+<p>update-class works!</p>
+<div class="row" style="background-color: silver; ">  
+    <div class="col-sm-4"></div>  
+    <div class="col-sm-4" >  
+      <div  style="width: 400px;">  
+        <form  [formGroup]="courseSaveform"  (ngSubmit)="updateCourse()">  
+            <div class="form-group">  
+                <label for="name" class="form-label">Corse Name</label>  
+                <input type="text" class="form-control"    formControlName="courseName" data-toggle="tooltip"   
+                   data-placement="right" title="Enter Class Name" >  
+                  
+            </div>
+              
+            <div class="form-group">  
+              <label for="name" class="form-label">Course Code </label>  
+              <input type="text" class="form-control"    formControlName="courseCode" data-toggle="tooltip"   
+                 data-placement="right" title="Enter courseMedium" >  
+                
+          </div>
+            <div class="form-group">  
+                <label for="name">Course Duration </label>  
+                <input type="text" class="form-control" formControlName="duration"   
+                  data-toggle="tooltip" data-placement="right" title="Enter Class Code">  
+                
+            </div>  
+      
+            <button type="submit" class="btn btn-success">Submit</button>  
+        </form>  
+    </div>  
+    </div>  
+    <div class="col-sm-4"></div>  
+  </div>  
+  
+  

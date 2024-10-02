@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { Student } from '../../student';
-import { StudentService } from '../../student.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { StudentService } from '../../../student.service';
 
 @Component({
   selector: 'app-update-student',

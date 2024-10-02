@@ -21,10 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.student.app.StudentApplication;
 import com.student.app.entity.Student;
 import com.student.app.exception.StudentNotFoundException;
+import com.student.app.response.StudentResponse;
 import com.student.app.service.StudentService;
 
+import brave.Tracer;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
@@ -33,16 +36,21 @@ import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 @RequestMapping("/api/student")
 @RefreshScope
 public class StudentController {
-	Logger logger = LoggerFactory.getLogger(StudentController.class);
+	private static final Logger logger = LoggerFactory.getLogger(StudentApplication.class);
 
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired Tracer tracer;
 	
 	@Value("${app.title}")
 	private String title;
 	
 	@PostMapping("")
 	public Student saveStudent(@RequestBody Student student) {
+		logger.info("Student saveStudent"+student);
+		logger.info("Current trace ID: " + tracer.currentSpan().context().traceIdString());
+		System.out.println("Current trace Id : "+ tracer.currentSpan().context().traceIdString());
 		return studentService.saveStudent(student);
 	}
 	
@@ -50,26 +58,38 @@ public class StudentController {
 	// This method will be triggered for a GET request to "/api/students"
     @GetMapping("")
     public List<Student> getAllStudents() {
-    	System.out.println("StudentController getAllStudents ");
-		System.out.println("StudentController Students Data  "+studentService.getAllStudents());
+    	logger.info("Student saveStudent"+studentService.getAllStudents());
+		logger.info("Current trace ID: " + tracer.currentSpan().context().traceIdString());
+		System.out.println("Current trace Id : "+ tracer.currentSpan().context().traceIdString());
     	return studentService.getAllStudents();
     }
     
 
 	@GetMapping("/{id}")
 	public Student getStudent(@PathVariable Long id){
+		logger.info("Student getStudent"+id);
 		return studentService.getStudentById(id);
 	}
-	
+
+
+	@GetMapping("/id/{id}")
+	public StudentResponse getStudentDetails(@PathVariable Long id){
+		logger.info("Student getStudentDetails"+id);
+		return studentService.getStudentDetailsById(id);
+	}
+
 	@GetMapping("/actuator")
     public ResponseEntity<String> getActuatorInfo() {
+		logger.info("StudentController getActuatorInfo");
         return ResponseEntity.ok("Actuator Info");
     }
 	
 	
     @GetMapping("/config")
     public ResponseEntity<String> showProductMsg() {
-        return new ResponseEntity<String>("Value of title from Config Server: "+title, HttpStatus.OK);
+    	logger.info("StudentController getActuatorInfo");
+        
+    	return new ResponseEntity<String>("Value of title from Config Server: "+title, HttpStatus.OK);
     }
 
 	
@@ -80,22 +100,30 @@ public class StudentController {
 	 @ResponseStatus(HttpStatus.ACCEPTED)
 	
 	public CompletableFuture<String> getStudentWithDepartment(@PathVariable Long id) {
+		logger.info("StudentController getActuatorInfo");
+        
 		return CompletableFuture.supplyAsync(()->studentService.getStudentWithDepartment(id));
 	}
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public CompletableFuture<String> fallbackMethod(@PathVariable Long id, RuntimeException ex) {
+		logger.info("StudentController fallbackMethod");
+        
 		return CompletableFuture.supplyAsync(()->"Fallback method '@CircuitBreaker ' Service is down. Please try after some time.");
 	}
 	
 	@PutMapping("/{id}")
 	public Student updateStudent(@PathVariable Long id , @RequestBody Student student){
-				return studentService.updateStudent(id , student);
+		logger.info("StudentController updateStudent :"+student);
+        
+		return studentService.updateStudent(id , student);
 	}
 	
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> updateStudent(@PathVariable Long id ){
+		logger.info("StudentController updateStudent "+id);
+        
 		studentService.deleteStudentById(id);
         return ResponseEntity.noContent().build();
 	}
@@ -103,7 +131,9 @@ public class StudentController {
 	// Exception Handler for StudentNotFoundException
     @ExceptionHandler(StudentNotFoundException.class)
     public ResponseEntity<String> handleStudentNotFoundException(StudentNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    	logger.info("StudentController handleStudentNotFoundException "+ex.getMessage());
+        
+    	return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 }

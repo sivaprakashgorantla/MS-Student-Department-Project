@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Department } from '../../../department';
+import { Department } from '../../../models/department';
 import { DepartmentService } from '../../../department.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';

@@ -1,19 +1,19 @@
-package com.classrom.app.service;
+package com.course.app.service;
 
 import java.util.List;
 
-import com.classrom.app.entity.ClassRoom;
+import com.course.app.entity.Course;
 
-public interface ClassService {
+public interface CourseService {
 
-	public ClassRoom saveClass(ClassRoom classRoom) ;
+	public Course saveCourse(Course course) ;
 	
-	public ClassRoom getClassById(Long id);
+	public Course getCourseById(Long id);
 
-	public List<ClassRoom> getAllClasses();
+	public List<Course> getAllCourse();
 
-	public void deleteClassById(Long id);
+	public void deleteCourseById(Long id);
 
-	public ClassRoom updateClasses(Long id, ClassRoom classRoom);
+	public Course updateCourse(Long id, Course course );
 	
 }

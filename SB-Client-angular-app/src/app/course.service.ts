@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Class } from './models/class/class';
+import {  Course } from './models/course';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClassService {
+export class CourseService {
 
-  private baseUrl = 'http://localhost:9988/api/class';  
+  private baseUrl = 'http://localhost:9988/api/course';  
   
   
   constructor(private http: HttpClient) { }
   
-  getClassList(): Observable<any> {
+  getCourseList(): Observable<any> {
   
     return this.http.get(`${this.baseUrl}`);
   }
 
-  getClass(id:number):Observable<any>{
+  getCourse(id:number):Observable<any>{
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  createClass(department: Class):Observable<any> {
+  createCourse(department: Course):Observable<any> {
    return this.http.post(`${this.baseUrl}`, department);
   }
 
   
-  updateClass(id: number, department: Class): Observable<Object>{
+  updateCourse(id: number, department: Course): Observable<Object>{
     // return this.http.put(`${this.baseUrl}edit/${id}`, student);
     return this.http.put(`${this.baseUrl}/${id}`, department);
   }
 
-  deleteClass(id: number): Observable<any> {
+  deleteCourse(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }}

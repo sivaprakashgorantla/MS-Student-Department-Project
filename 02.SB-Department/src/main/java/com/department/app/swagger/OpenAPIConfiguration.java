@@ -7,16 +7,23 @@ import io.swagger.v3.oas.models.servers.Server;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.department.app.service.DepartmentServiceImpl;
 
 
 
 @Configuration
 public class OpenAPIConfiguration {
+	
+	private final Logger LOGGER = LoggerFactory.getLogger(DepartmentServiceImpl.class);
 
    @Bean
    public OpenAPI defineOpenApi() {
+	   LOGGER.info("Department OpenAPIConfiguration");
        Server server = new Server();
        server.setUrl("http://localhost:9093");
        server.setDescription("Development");

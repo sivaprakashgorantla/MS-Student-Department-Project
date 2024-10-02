@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentListComponent } from "../student-list/student-list.component";
-import { Student } from '../../student';
-import { StudentService } from '../../student.service';
+import { Student } from '../../../models/Student';
+import { StudentService } from '../../../student.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';

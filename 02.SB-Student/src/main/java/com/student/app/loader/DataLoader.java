@@ -23,17 +23,18 @@ public class DataLoader implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 	
+		logger.info("Data loder run method ");
 		 List<Student> departments = List.of(
-				 new Student(2001L,"Sivaprakash","Gorantla","sivaprakashgorantla@gmail.com",10001L),
-				 new Student(2002L,"Arunaprakash","Gorantla","sivaprakashgorantla@gmail.com",10005L),
-				 new Student(2003L,"Saanvi","Gorantla","sivaprakashgorantla@gmail.com",10006L),
-				 new Student(2004L,"Samanvitha","Gorantla","sivaprakashgorantla@gmail.com",10005L),
-				 new Student(2005L,"Rahul","Garadimani","rahulgaradimani@gmail.com",10002L),
-				 new Student(2006L,"Aravind","Garadimani","avarindgaradimani@gmail.com",10003L));
+				 new Student(2001L,"Sivaprakash","Gorantla","sivaprakashgorantla@gmail.com",10001L,30001L),
+				 new Student(2002L,"Arunaprakash","Gorantla","sivaprakashgorantla@gmail.com",10005L,30002L),
+				 new Student(2003L,"Saanvi","Gorantla","sivaprakashgorantla@gmail.com",10006L,30003L),
+				 new Student(2004L,"Samanvitha","Gorantla","sivaprakashgorantla@gmail.com",10005L,30004L),
+				 new Student(2005L,"Rahul","Garadimani","rahulgaradimani@gmail.com",10002L,30001L),
+				 new Student(2006L,"Aravind","Garadimani","avarindgaradimani@gmail.com",10003L,30002L));
 		 
-				// studentRepository.saveAll(departments);
+				//studentRepository.saveAll(departments);
 				 
-		System.out.println("==========================================DataLoader");
+		System.out.println("=======================================DataLoader");
 		
 	}
 

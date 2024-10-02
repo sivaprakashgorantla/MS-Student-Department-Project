@@ -1,19 +1,19 @@
-package com.classrom.app.exception;
+package com.course.app.exception;
 
-public class ClassRoomNotFoundException extends RuntimeException {
+public class CourseNotFoundException extends RuntimeException {
 
-	private	final Long classId;
+	private	final Long courseId;
 
-	public 	ClassRoomNotFoundException(Long classId) {
-		super("Class with ID " + classId + " not found");
-		this.classId = classId;
+	public 	CourseNotFoundException(Long courseId) {
+		super("Course with ID " + courseId + " not found");
+		this.courseId = courseId;
 	}
 
 	/**
 	 * @return the classId
 	 */
-	public Long getClassId() {
-		return classId;
+	public Long getCourseId() {
+		return courseId;
 	}
 
 }

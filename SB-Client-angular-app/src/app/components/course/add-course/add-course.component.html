@@ -1,0 +1,34 @@
+<p>add-course works!</p>
+
+<div class="row">  
+    <div class="col-sm-4"></div>  
+    <div class="col-sm-4" >  
+      <div [hidden]="submitted" style="width: 400px;">  
+        <form [formGroup]="courseSaveform"  (ngSubmit)="saveCourse()">  
+            <div class="form-group">  
+                <label for="name" class="form-label">Course  Name</label>  
+                <input type="text" class="form-control"  formControlName="courseName" data-toggle="tooltip"   
+                   data-placement="right" title="Enter Course Name" >  
+                  
+            </div>  
+            <div class="form-group">  
+              <label for="name">Course Duration</label>  
+              <input type="text" class="form-control"  formControlName="duration" data-toggle="tooltip"   
+                 data-placement="right" title="Enter Medium" >  
+          </div>  
+    
+            <div class="form-group">  
+                <label for="name">Course  Code</label>  
+                <input type="text" class="form-control" formControlName="courseCode"   
+                  data-toggle="tooltip" data-placement="right" title="Enter Course Code">  
+                   
+            </div>  
+      
+            <button type="submit" class="btn btn-success">Submit</button>  
+        </form>  
+    </div>  
+    </div>  
+    <div class="col-sm-4"></div>  
+  </div>  
+  
+  

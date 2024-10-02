@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
-import { Student } from '../../../student';
+import { Student } from '../../../models/Student';
 import { StudentService } from '../../../student.service';
-import { StudentListComponent } from '../../student-list/student-list.component';
-import { Department } from '../../../department';
+import { StudentListComponent } from '../../student/student-list/student-list.component';
+import { Department } from '../../../models/department';
 import { DepartmentService } from '../../../department.service';
 
 @Component({

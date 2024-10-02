@@ -9,10 +9,10 @@
 		<version>3.3.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.class</groupId>
-	<artifactId>02.SB-Class</artifactId>
+	<groupId>com.cource</groupId>
+	<artifactId>com.cource</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>02.SB-Class</name>
+	<name>02.SB-cource</name>
 	<description>Demo project for Spring Boot</description>
 	<url />
 	<licenses>
@@ -32,6 +32,18 @@
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+			<version>1.3.4</version> <!-- Check for the latest compatible version -->
+		</dependency>
+
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
+			<version>3.4.2</version> <!-- Latest compatible version -->
+		</dependency>
+
 		<!-- Swagger dependency-->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -88,6 +100,14 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
 		</dependency>
 	</dependencies>
 

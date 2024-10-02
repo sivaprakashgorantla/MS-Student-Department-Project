@@ -3,6 +3,7 @@ package com.student.app.service;
 import java.util.List;
 
 import com.student.app.entity.Student;
+import com.student.app.response.StudentResponse;
 
 public interface StudentService {
 
@@ -17,5 +18,7 @@ public interface StudentService {
 	Student updateStudent(Long id, Student student);
 	
 	void deleteStudentById(Long id);
+
+	public StudentResponse getStudentDetailsById(Long id);
 	
 }

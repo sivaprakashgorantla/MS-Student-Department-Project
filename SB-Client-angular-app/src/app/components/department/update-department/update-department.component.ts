@@ -3,7 +3,7 @@ import { DepartmentService } from '../../../department.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Department } from '../../../department';
+import { Department } from '../../../models/department';
 
 @Component({
   selector: 'app-update-department',

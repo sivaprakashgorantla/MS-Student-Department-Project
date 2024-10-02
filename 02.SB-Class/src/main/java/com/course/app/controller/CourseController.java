@@ -1,7 +1,6 @@
-package com.classrom.app.controller;
+package com.course.app.controller;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,63 +17,67 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.classrom.app.entity.ClassRoom;
-import com.classrom.app.exception.ClassRoomNotFoundException;
-import com.classrom.app.service.ClassService;
+import com.course.app.entity.Course;
+import com.course.app.exception.CourseNotFoundException;
+import com.course.app.service.CourseService;
 
 @RestController
-@RequestMapping("/api/class")
+@RequestMapping("/api/course")
 @RefreshScope
-public class ClassController {
+public class CourseController {
 
-	private static final Logger LOGGER = LogManager.getLogger(ClassController.class);
+	private static final Logger LOGGER = LogManager.getLogger(CourseController.class);
 
 	@Autowired
-	private ClassService classRepository;
+	private CourseService courseService;
 
 	@Value("${app.title}")
 	private String title;
 	
     @GetMapping("/config")
     public ResponseEntity<String> showProductMsg() {
+    	LOGGER.info("CourseController  showProductMsg");
         return new ResponseEntity<String>("Value of title from Config Server: "+title, HttpStatus.OK);
     }
 
 	// This method will be triggered for a GET request to
 	@GetMapping("")
-	public List<ClassRoom> getAllClasses() {
-		System.out.println("ClassController getAllClasses ");
-		System.out.println("ClassController getAllClasses Data  " + classRepository.getAllClasses());
-		return classRepository.getAllClasses();
+	public List<Course> getAllCourses() {
+		LOGGER.info("CourseController  getAllCourses : "+courseService.getAllCourse());
+		return courseService.getAllCourse();
 	}
 
 	@GetMapping("/{id}")
-	public ClassRoom getClassById(@PathVariable Long id){
-		return classRepository.getClassById(id);
+	public Course getCourseById(@PathVariable Long id){
+		LOGGER.info("CourseController  getCourseById :"+id);
+		return courseService.getCourseById(id);
 	}
 	
 	@PostMapping("")
-	public ClassRoom saveDepartment(@RequestBody ClassRoom classRoom) {
-		return classRepository.saveClass(classRoom);
+	public Course saveCourse(@RequestBody Course course) {
+		LOGGER.info("CourseController  saveCourse :"+course);
+		return courseService.saveCourse(course);
 	}
 
 	@PutMapping("/{id}")
-	public ClassRoom updateDepartment(@PathVariable Long id, @RequestBody ClassRoom classRoom) {
-		return classRepository.updateClasses(id, classRoom);
+	public Course updateCourse(@PathVariable Long id, @RequestBody Course course) {
+		LOGGER.info("CourseController  updateCourse :"+ id +" : "+course);
+		return courseService.updateCourse(id, course);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteClassById(@PathVariable Long id) {
-		classRepository.deleteClassById(id);
+	public ResponseEntity<Void> deleteCourseById(@PathVariable Long id) {
+		LOGGER.info("CourseController  deleteCourseById :"+ id);
+		courseService.deleteCourseById(id);
 		return ResponseEntity.noContent().build();
 	}
 
 	// Exception Handler for ClassRoomNotFoundException
-	@ExceptionHandler(ClassRoomNotFoundException.class)
-	public ResponseEntity<String> handleStudentNotFoundException(ClassRoomNotFoundException ex) {
+	@ExceptionHandler(CourseNotFoundException.class)
+	public ResponseEntity<String> handleStudentNotFoundException(CourseNotFoundException ex) {
+		LOGGER.info("CourseController  handleStudentNotFoundException :"+ ex.getMessage());
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 

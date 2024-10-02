@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Department } from './department';
+import { Department } from './models/department';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 

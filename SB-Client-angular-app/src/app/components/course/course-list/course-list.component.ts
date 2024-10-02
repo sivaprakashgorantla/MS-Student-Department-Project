@@ -1,47 +1,47 @@
 import { Component } from '@angular/core';
-import { Class } from '../../../models/class/class';
-import { ClassService } from '../../../class.service';
+import { Course } from '../../../models/course';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
+import { CourseService } from '../../../course.service';
 
 @Component({
   selector: 'app-class-list',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterModule],
-  templateUrl: './class-list.component.html',
-  styleUrl: './class-list.component.css'
+  templateUrl: './course-list.component.html',
+  styleUrl: './course-list.component.css'
 })
-export class ClassListComponent {
-  classess: Class [] = [];
+export class CourseListComponent {
+  courses: Course [] = [];
 
-  constructor(private classService: ClassService) { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.loadTable();
   }
 
   loadTable() {
-    this.classService.getClassList().subscribe({
-      next: (response: Class[]) => {
+    this.courseService.getCourseList().subscribe({
+      next: (response: Course[]) => {
         console.log(response);
-        this.classess = response;
+        this.courses = response;
       },
       error: (error: HttpErrorResponse) => {  // Explicitly define the error type
-        console.error('Error loading Class:', error.message);
+        console.error('Error loading Course:', error.message);
       }
     });
   }
 
-  deleteClass(id: number): void {
+  deleteCourse(id: number): void {
     console.log('delete Class : ' + id);
 
-    this.classService.deleteClass(id).subscribe({
+    this.courseService.deleteCourse(id).subscribe({
       next: () => {
         this.loadTable();  // Refresh the table after deleting the department
       },
       error: (error: HttpErrorResponse) => {  // Explicitly define the error type
-        console.error('Error deleting Classes:', error.message);
+        console.error('Error deleting Course:', error.message);
       }
     });
   }

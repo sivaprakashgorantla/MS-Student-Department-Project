@@ -41,43 +41,48 @@ public class DepartmentController {
 	
     @GetMapping("/config")
     public ResponseEntity<String> showProductMsg() {
+    	LOGGER.info("DepartmentController showProductMsg");
         return new ResponseEntity<String>("Value of title from Config Server: "+title, HttpStatus.OK);
     }
 
 	// This method will be triggered for a GET request to
 	@GetMapping("")
 	public List<Department> getAllDepartments() {
-		System.out.println("DepartmentController getAllDepartments ");
-		System.out.println("DepartmentController Students Data  " + departmentService.getAllDepartments());
+		LOGGER.info("DepartmentController  getAllCourses : "+departmentService.getAllDepartments());
 		return departmentService.getAllDepartments();
 	}
 
 	@GetMapping("/{id}")
 	public Department getDepartmentById(@PathVariable Long id){
+		LOGGER.info("DepartmentController  getDepartmentById : "+id);
 		return departmentService.getDepartmentById(id);
 	}
 	
 	
 	@PostMapping("")
 	public Department saveDepartment(@RequestBody Department department) {
+		LOGGER.info("DepartmentController  saveDepartment : "+department);
 		return departmentService.saveDepartment(department);
 	}
 
 
 	@PutMapping("/{id}")
 	public Department updateDepartment(@PathVariable Long id, @RequestBody Department department) {
+		LOGGER.info("DepartmentController  updateDepartment : "+id + " : "+department);
 		return departmentService.updateDepartment(id, department);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> DeleteDepartment(@PathVariable Long id) {
+		LOGGER.info("DepartmentController  DeleteDepartment : "+id );
 		departmentService.deleteStudentById(id);
 		return ResponseEntity.noContent().build();
 	}
 
 	// Exception Handler for DepartmentNotFoundException
 	@ExceptionHandler(DepartmentNotFoundException.class)
-	public ResponseEntity<String> handleStudentNotFoundException(DepartmentNotFoundException ex) {
+	public ResponseEntity<String> handleDepartmentNotFoundException(DepartmentNotFoundException ex) {
+		LOGGER.info("DepartmentController  DepartmentNotFoundException : "+ex.getMessage() );
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 

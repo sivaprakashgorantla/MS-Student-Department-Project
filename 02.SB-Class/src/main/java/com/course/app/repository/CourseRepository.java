@@ -1,11 +1,12 @@
-package com.classrom.app.repository;
+package com.course.app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
-import com.classrom.app.entity.ClassRoom;
+import com.course.app.entity.Course;
+
 
 @Component
-public interface ClassRepository extends JpaRepository<ClassRoom, Long>{
+public interface CourseRepository extends JpaRepository<Course, Long>{
 
 }

@@ -22,7 +22,7 @@ public class DataLoader implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-	
+		logger.info("Department Dataloader");
 		 List<Department> departments = List.of(
 				 new Department(1001L,"DEV","IT","DEVIT"),
 				 new Department(1002L,"SALES","MARKETING","BUSINESS"),

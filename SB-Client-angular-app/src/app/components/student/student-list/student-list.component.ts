@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { StudentService } from '../../student.service';
-import { Student } from '../../student';
+import { StudentService } from '../../../student.service';
+import { Student } from '../../../models/Student';
 import { FormsModule, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Observable, of } from 'rxjs';
