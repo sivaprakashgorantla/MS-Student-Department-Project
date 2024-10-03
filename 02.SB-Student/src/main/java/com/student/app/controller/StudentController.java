@@ -27,10 +27,11 @@ import com.student.app.exception.StudentNotFoundException;
 import com.student.app.response.StudentResponse;
 import com.student.app.service.StudentService;
 
-import brave.Tracer;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
+import io.micrometer.observation.Observation;
+import io.micrometer.observation.ObservationRegistry;
 
 @RestController
 @RequestMapping("/api/student")
@@ -41,7 +42,8 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
-	@Autowired Tracer tracer;
+	@Autowired
+    private ObservationRegistry observationRegistry;
 	
 	@Value("${app.title}")
 	private String title;
@@ -49,8 +51,6 @@ public class StudentController {
 	@PostMapping("")
 	public Student saveStudent(@RequestBody Student student) {
 		logger.info("Student saveStudent"+student);
-		logger.info("Current trace ID: " + tracer.currentSpan().context().traceIdString());
-		System.out.println("Current trace Id : "+ tracer.currentSpan().context().traceIdString());
 		return studentService.saveStudent(student);
 	}
 	
@@ -58,10 +58,15 @@ public class StudentController {
 	// This method will be triggered for a GET request to "/api/students"
     @GetMapping("")
     public List<Student> getAllStudents() {
-    	logger.info("Student saveStudent"+studentService.getAllStudents());
-		logger.info("Current trace ID: " + tracer.currentSpan().context().traceIdString());
-		System.out.println("Current trace Id : "+ tracer.currentSpan().context().traceIdString());
-    	return studentService.getAllStudents();
+    	
+    	
+    	Observation.createNotStarted("custom-operation", observationRegistry)
+        .lowCardinalityKeyValue("custom.tag", "value")
+        .observe(() -> {
+            // Your custom logic here
+        	logger.info("Student saveStudent"+studentService.getAllStudents());
+        });
+    	    	return studentService.getAllStudents();
     }
     
 
